@@ -2,82 +2,83 @@
 <html>
 <head th:replace="layouts/base-layout::head"></head>
 
-	<style>
-	canvas {
-  	border: 1pt solid dimgray;
-  	height: 100%;
+<style>
+canvas {
+	border: 1pt solid dimgray;
+	height: 100%;
 }
-
-	
-	</style>
-	<script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js" ></script>
+</style>
+<script
+	src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
 <body>
-	<div class="container mt-5">
-		<div class="row justify-content">
-			<div class="col-md-6">
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-7">
 				<div class="card">
-					<div class="card-header bg-dark text-light">
+					<div class="card-header">
 						<h4>Registro de usuarios</h4>
 					</div>
 					<div class="card-body">
 						<form th:action="@{/auth/registro}" th:object="${usuario}"
-							method="POST">
+							method="POST" enctype="multipart/form-data">
 
 							<div class="row form-group justify-content-center">
-							
 								<canvas id="theCanvas" class="col-6"></canvas>
 							</div>
-							
-							
 							<div class="row form-group justify-content-center">
-								<label class="btn btn-outline-secondary col-8"> Agregar foto de perfil 
-									<input type="file" multiple="false" accept="image/*"
-									id="fileInput" onchange="loadImage()" style="display: none;">
-									</label>
+								<label class="btn btn-outline-success col-6"> Agregar
+									foto de perfil <input type="file" name="fotoPerfil"
+									multiple="false" accept="image/*" id="fileInput"
+									onchange="loadImage()" style="display: none;">
+								</label>
+							</div>
+							<div class="input-group col-12 p-0 m-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text">Nombre:</label>
+								</div>
+								<input type="text" class="form-control" th:field="*{nombre}"
+									placeholder="Nombre"> <input type="text"
+									class="form-control" th:field="*{apellidos}"
+									placeholder="Apellidos">
 							</div>
 
-							<div class="row form-group">
-								<label class="col-md-3">Nombre</label> <input type="text"
-									class="form-control col-md-7" th:field="*{nombre}">
-							</div>
-							<div class="row form-group">
-								<label class="col-md-3">Apellidos</label> <input type="text"
-									class="form-control col-md-7" th:field="*{apellidos}">
-							</div>
-							<div class="row form-group">
-								<label class="col-md-3">Email</label> <input type="email"
-									class="form-control col-md-7" th:field="*{email}">
+							<div class="input-group col-12 p-0 m-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text">Email</label>
+								</div>
+								<input type="email" class="form-control" th:field="*{email}"
+									placeholder="Correo electrónico">
 							</div>
 
-							<div class="row form-group">
-								<label class="col-md-3">Ciudad</label> <input type="email"
-									class="form-control col-md-7" th:field="*{ciudad}">
+							<div class="input-group col-12 p-0 m-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text">Ubicación</label>
+								</div>
+								<input type="text" class="form-control" th:field="*{ciudad}"
+									placeholder="Ciudad"> <input type="text"
+									class="form-control" th:field="*{pais}" placeholder="Pais">
 							</div>
-							<div class="row form-group">
-								<label class="col-md-3">Pais</label> <input type="email"
-									class="form-control col-md-7" th:field="*{pais}">
-							</div>
-							<div class="row form-group">
-								<label class="col-md-3">Acerca de mi</label>
-								<textarea class="form-control col-md-7"
-									th:field="*{descripcion}"></textarea>
-							</div>
-
-							<div class="row form-group">
-								<label class="col-md-3">Username</label> <input type="text"
-									class="form-control col-md-7" th:field="*{username}">
+							<div class="input-group col-12 p-0 m-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text">Acerca de mi</label>
+								</div>
+								<textarea class="form-control" th:field="*{descripcion}"></textarea>
 							</div>
 
-							<div class="row form-group">
-								<label class="col-md-3">Contraseña</label> <input
-									type="password" class="form-control col-md-7"
-									th:field="*{password}">
+							<div class="input-group col-12 p-0 m-2">
+								<div class="input-group-prepend">
+									<label class="input-group-text">Username</label>
+								</div>
+								<input type="text" class="form-control col-md-7"
+									th:field="*{username}" placeholder="Username"> 
+								<input type="password"
+									class="form-control col-md-7" th:field="*{password}" placeholder="Password">
 							</div>
-
-							<div class="row form-group">
+							
+							<div class="row form-group justify-content-center mt-3">
 								<input type="submit"
-									class="btn btn-success btn-block col-md-7 offset-3"
-									th:field="*{password}" value="Registrarme">
+									class="btn btn-success btn-block col-5 " value="Registrarme">
 							</div>
 							<div class="row form-group">
 								<label class="col-md-12">¿Ya tienes una cuenta?, <a
@@ -90,8 +91,9 @@
 			</div>
 		</div>
 	</div>
+	<div th:replace="fragments/footer :: footer"></div>
 
-<script>
+	<script>
 		var originalImage = null;
 		var canvas = document.getElementById("theCanvas");
 		function loadImage() {
