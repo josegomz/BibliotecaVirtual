@@ -2,18 +2,24 @@
 <html>
 <head th:replace="layouts/base-layout::head"></head>
 <body>
+	<div th:replace="fragments/header :: header"></div>
 	<div class="container-fluid">
 	<div class="row justify-content-center">
 		<div class="col col-md-3">
 			<div class="card card-body">
+			
 				<span th:if="${session.usuario != null}">Bienvenido <span class="font-italic" th:text="${session.usuario.nombre}"></span></span>
-				
-				<form th:action="@{/logout}" method="POST">
+				<img th:if="${session.usuario != null}" th:src="@{'/img/usuario/'+${session.usuario.foto_perfil}}" class="img-thumbnail">
+ 				<form th:action="@{/logout}" method="POST">
 					<button type="submit" class="btn btn-primary">Cerrar sesion</button>
 				</form>
 			</div>
 		</div>
 	</div>
 	</div>
+	
+    <div th:replace="fragments/footer :: footer"></div>
+    
+    <div th:replace="layouts/base-layout :: scripts"></div>
 </body>
 </html>

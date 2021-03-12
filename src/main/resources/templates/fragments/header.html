@@ -6,16 +6,40 @@
 </head>
 <body>
 
-<div th:fragment="header">
-	<nav class="fixed-top navbar navbar-light bg-light pl-5">
-        <a class="navbar-brand" th:href="@{/}">
-        	
-            <img th:src="@{/img/suneo.png}" width="130" height="50" class="d-inline-block align-top" alt="">
-            <img th:src="@{/img/unsis.jpg}" alt="Logo UNSIS" width="50" height="50" class="d-inline-block align-top">
-            Biblioteca virtual UNSIS
-        </a>
-        
-    </nav>
-</div>
+	<div th:fragment="header">
+		<nav class="fixed-top navbar navbar-light bg-light pl-5">
+			<a class="navbar-brand" th:href="@{/}"> <img
+				th:src="@{/img/suneo.png}" width="130" height="50"
+				class="d-inline-block align-top" alt=""> <img
+				th:src="@{/img/unsis.jpg}" alt="Logo UNSIS" width="50" height="50"
+				class="d-inline-block align-top"> Biblioteca virtual UNSIS
+			</a>
+			<form class="form-inline my-2 my-lg-0"
+				th:if="${session.usuario != null}">
+				<div class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"
+						role="button" aria-haspopup="true" aria-expanded="false"> <img
+						class="navbar-avatar"
+						th:src="@{'/img/usuario/'+${session.usuario.foto_perfil}}"
+						alt="Profile photo" width="50" height="50" />
+					</a>
+					<div class="dropdown-menu dropdown-menu-right text-right">
+						<a class="dropdown-item">Ver perfil</a> <a class="divider"></a> <a
+							class="dropdown-item">Editar perfil</a> <a class="divider"></a> <a
+							class="dropdown-item">
+							<form th:action="@{/../logout}" method="POST">
+								<button type="submit" class="btn btn-primary">Cerrar
+									sesion</button>
+							</form>
+						</a>
+
+					</div>
+				</div>
+
+
+			</form>
+
+		</nav>
+	</div>
 </body>
 </html>

@@ -66,7 +66,7 @@ public class LoginController {
 					BufferedOutputStream  stream = new BufferedOutputStream(new FileOutputStream(RutaAbsoluta));
 					stream.write(byteIMG);
 					stream.close();
-					usuario.setFoto_perfil(foto.getOriginalFilename());
+					usuario.setFoto_perfil(usuario.getUsername()+".jpg");
 				}catch(Exception e) {
 					e.getMessage();
 				}
